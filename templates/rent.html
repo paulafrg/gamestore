@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStore</title>
+</head>
+<body>
+    <h1>Rent Your Game</h1>
+    <p>Select below your name and game that you want to rent.</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div>
+            {% for field in form.visible_fields %}
+            <div>    
+                <label for="{{ field.id_for_label }}"> {{ field.label }}</label>
+                    {{ field }}  
+            </div>
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div>
+            <button type="submit">Rent</button>
+        </div>
+    </form>
+</body>
+</html>
